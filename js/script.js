@@ -9,7 +9,7 @@ class Chihuahuas {
   }
 
   drawMe() {
-    if (!unicorn.isCrashed || !score >= 5) {
+    if (!unicorn.isCrashed && !(score >= 5)) {
       this.y += 2;
       if (this.y > 700) {
         this.y = 0;
@@ -27,17 +27,19 @@ class Hoomans {
     this.width = hoomansWidth;
     this.height = hoomansHeight;
     this.isCrashed = false;
+    this.image = hoomansImg;
   }
 
   drawMe() {
-    if (!unicorn.isCrashed || !score >= 5) {
+    if (!unicorn.isCrashed && !(score >= 5)) {
       this.y += 2;
       if (this.y > 700) {
-        this.y = 0
+        this.y = 0;
         this.isCrashed = false;
+        this.image = hoomansImg;
       }
     }
-    ctx.drawImage(hoomansImg, this.x, this.y, this.width, this.height);
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 }
 
@@ -48,13 +50,13 @@ var unicornImg = new Image();
 unicornImg.src = "./images/unicorn.png";
 
 var chihuahuasImg = new Image();
-chihuahuasImg.src = "./images/blackdabchihuahua.png";
+chihuahuasImg.src = "./images/CHIHUAHUA ETOILES.png";
 
 var hoomansImg = new Image();
 hoomansImg.src = "./images/fuckinghooman.png";
 
-/* var redHoomansImg = new Image();
-redHoomansImg.src = "./images/redfuckinghoomans.png"; */
+var redHoomansImg = new Image();
+redHoomansImg.src = "./images/redfuckinghooman.png";
 
 var score = 0;
 
@@ -88,7 +90,7 @@ var allHoomans = [
   new Hoomans(300, 100, 80, 80),
   new Hoomans(400, 490, 80, 80),
   new Hoomans(100, 200, 80, 80),
-  new Hoomans(600, 280, 80, 80),
+  new Hoomans(600, 280, 80, 80)
 ];
 
 var gameOver = {
@@ -97,10 +99,10 @@ var gameOver = {
     this.opacity += 0.01;
 
     ctx.globalAlpha = this.opacity;
-    ctx.font = "bold 70px monospace";
+    ctx.font = "bold 40px monospace";
 
-    ctx.fillStyle = "deeppink";
-    ctx.fillText("Game Over, you killed one Divine Animal", 311, 325);
+    ctx.fillStyle = "white";
+    ctx.fillText("Game Over, you killed one Divine Animal", 50, 325);
 
     ctx.globalALpha = 1;
   }
@@ -112,10 +114,10 @@ var win = {
     this.opacity += 0.01;
 
     ctx.globalAlpha = this.opacity;
-    ctx.font = "bold 70px monospace";
+    ctx.font = "bold 40px monospace";
 
-    ctx.fillStyle = "deeppink";
-    ctx.fillText("You saved us, Master", 311, 325);
+    ctx.fillStyle = "white";
+    ctx.fillText("You saved us, Master", 50, 325);
 
     ctx.globalALpha = 1;
   }
@@ -124,7 +126,7 @@ var win = {
 drawingLoop();
 
 document.onkeydown = function(event) {
-  if (unicorn.isCrashed || !score >= 5) {
+  if (unicorn.isCrashed || score >= 5) {
     return;
   }
   switch (event.keyCode) {
@@ -161,7 +163,7 @@ function drawEverything() {
 
   // score box
   ctx.fillStyle = "rgb(250, 250, 250)";
-  ctx.font = "24px Helvetica";
+  ctx.font = "bold 24px Helvetica";
   ctx.textAlign = "left";
   ctx.textBaseline = "top";
   ctx.fillText("Hoomans killed: " + score, 32, 32);
@@ -193,21 +195,15 @@ function drawEverything() {
       unicorn.isCrashed = false;
       oneHooman.isCrashed = true;
       score += 1;
-      /* if(oneHooman.isCrashed){
-        ctx.drawImage(redHoomansImg, this.x, this.y, this.width, this.heigth);
-      } else {
-        ctx.drawImage(hoomansImg, this.x, this.y, this.width, this.height);
-      } */
-  };
+      oneHooman.image = redHoomansImg;
+    }
 
-  if (score >= 5) {
-    win.drawMe();
+    if (score >= 5) {
+      win.drawMe();
+    }
+  });
+
+  if (unicorn.isCrashed) {
+    gameOver.drawMe();
   }
-});
-
-if (unicorn.isCrashed) {
-  gameOver.drawMe();
 }
-};
-// function you win
-// change hooman for red hooman once they are touched (but reset them for the next iteration of the forEach)
