@@ -6,6 +6,7 @@ class Chihuahuas {
     this.width = chihuahuasWidth;
     this.height = chihuahuasHeight;
     this.isCrashed = false;
+    this.image = chihuahuasImg;
   }
 
   drawMe() {
@@ -13,9 +14,10 @@ class Chihuahuas {
       this.y += 2;
       if (this.y > 700) {
         this.y = 0;
+        this.image = chihuahuasImg;
       }
     }
-    ctx.drawImage(chihuahuasImg, this.x, this.y, this.width, this.height);
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 }
 
@@ -52,6 +54,9 @@ unicornImg.src = "./images/unicorn.png";
 var chihuahuasImg = new Image();
 chihuahuasImg.src = "./images/CHIHUAHUA ETOILES.png";
 
+var bwChihuahuasImg = new Image();
+bwChihuahuasImg.src = "./images/CHIHUAHUA-ETOILES-b&w.png"
+
 var hoomansImg = new Image();
 hoomansImg.src = "./images/fuckinghooman.png";
 
@@ -59,6 +64,13 @@ var redHoomansImg = new Image();
 redHoomansImg.src = "./images/redfuckinghooman.png";
 
 var score = 0;
+
+var btn = document.querySelector("button");
+console.log(btn);
+
+btn.onclick = function (){
+  drawingLoop();
+};
 
 // create a unicorn object
 var unicorn = {
@@ -129,7 +141,7 @@ var win = {
   }
 };
 
-drawingLoop();
+// drawingLoop();
 
 document.onkeydown = function(event) {
   if (unicorn.isCrashed || score >= 5) {
@@ -183,6 +195,7 @@ function drawEverything() {
     if (rectangleCollision(unicorn, oneChihuahua)) {
       unicorn.isCrashed = true;
       oneChihuahua.isCrashed = true;
+      oneChihuahua.image = bwChihuahuasImg;
     }
   });
 
