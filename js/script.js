@@ -58,18 +58,30 @@ var bwChihuahuasImg = new Image();
 bwChihuahuasImg.src = "./images/CHIHUAHUA-ETOILES-b&w.png"
 
 var hoomansImg = new Image();
-hoomansImg.src = "./images/fuckinghooman.png";
+hoomansImg.src = "./images/trump.png";
 
 var redHoomansImg = new Image();
-redHoomansImg.src = "./images/redfuckinghooman.png";
+redHoomansImg.src = "./images/dead-trump.png";
 
+var display = document.querySelector(".choose-face")
 var score = 0;
 
-var btn = document.querySelector("button");
-console.log(btn);
+var faces = document.getElementsByClassName("oneface");
 
-btn.onclick = function (){
+var letMeHelpBtn = document.querySelector(".let-me-help");
+// display pas none
+
+var startBtn = document.querySelector(".startBtn");
+// remette écran start en display none 
+
+letMeHelpBtn.onclick = function() {
+  console.log(display);
+  display.style.display = 'flex';
+}
+
+startBtn.onclick = function (){
   drawingLoop();
+  display.style.display = 'none';
 };
 
 // create a unicorn object
@@ -104,6 +116,20 @@ var allHoomans = [
   new Hoomans(100, 200, 80, 80),
   new Hoomans(600, 280, 80, 80)
 ];
+
+// Select a face 
+for( var i = 0; i < faces.length; i++ ) {
+  faces[i].onclick = function() {
+    for( var j = 0; j < faces.length; j++ ){
+      faces[j].classList.remove("selected");
+  };
+    hoomansImg.src = this.querySelector("img").src;
+    this.classList.add("selected");
+  }
+};
+
+
+
 
 var gameOver = {
   opacity: 0,
@@ -141,7 +167,6 @@ var win = {
   }
 };
 
-// drawingLoop();
 
 document.onkeydown = function(event) {
   if (unicorn.isCrashed || score >= 5) {
