@@ -10,7 +10,7 @@ class Chihuahuas {
   }
 
   drawMe() {
-    if (!unicorn.isCrashed && !(score >= 5)) {
+    if (!unicorn.isCrashed && !(score >= 15)) {
       this.y += 2;
       if (this.y > 700) {
         this.y = 0;
@@ -33,7 +33,7 @@ class Hoomans {
   }
 
   drawMe() {
-    if (!unicorn.isCrashed && !(score >= 5)) {
+    if (!unicorn.isCrashed && !(score >= 15)) {
       this.y += 2;
       if (this.y > 700) {
         this.y = 0;
@@ -60,10 +60,24 @@ bwChihuahuasImg.src = "./images/CHIHUAHUA-ETOILES-b&w.png"
 var hoomansImg = new Image();
 hoomansImg.src = "./images/trump.png";
 
-var redHoomansImg = new Image();
-redHoomansImg.src = "./images/dead-trump.png";
+var deadTrumpImg = new Image();
+deadTrumpImg.src = "./images/dead-trump.png";
+
+var deadBorsoImg = new Image();
+deadBorsoImg.src = "./images/dead-borso.png";
+
+var deadPoutineImg = new Image();
+deadPoutineImg.src = "./images/dead-poutine.png";
+
+var deadWeinsteinImg = new Image();
+deadWeinsteinImg.src = "./images/dead-weinstein.png";
+
+var badBoy;
+
+var jingle = new Audio("./sounds/chihuahua-jingle.mp3");
 
 var display = document.querySelector(".choose-face")
+
 var score = 0;
 
 var faces = document.getElementsByClassName("oneface");
@@ -125,6 +139,8 @@ for( var i = 0; i < faces.length; i++ ) {
   };
     hoomansImg.src = this.querySelector("img").src;
     this.classList.add("selected");
+    badBoy = this.firstChild.getAttribute("name");
+    console.log(badBoy)
   }
 };
 
@@ -169,7 +185,7 @@ var win = {
 
 
 document.onkeydown = function(event) {
-  if (unicorn.isCrashed || score >= 5) {
+  if (unicorn.isCrashed || score >= 15) {
     return;
   }
   switch (event.keyCode) {
@@ -240,11 +256,24 @@ function drawEverything() {
       unicorn.isCrashed = false;
       oneHooman.isCrashed = true;
       score += 1;
-      oneHooman.image = redHoomansImg;
+      if(badBoy === "trump"){
+        oneHooman.image = deadTrumpImg;
+      }
+      if(badBoy === "borso"){
+        oneHooman.image = deadBorsoImg;
+      }
+      if(badBoy === "weinstein"){
+        oneHooman.image = deadWeinsteinImg;
+      }
+      if(badBoy === "poutine"){
+        oneHooman.image = deadPoutineImg;
+      }
+      
     }
 
-    if (score >= 5) {
+    if (score >= 15) {
       win.drawMe();
+      jingle.play();
     }
   });
 

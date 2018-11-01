@@ -54,19 +54,6 @@ p {
   margin-bottom: 0;
 }
 
-.btn {
-  /* background-color: DodgerBlue;  Blue background */
-  border: none; /* Remove borders */
-  color: black; /* White text */
-  padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
-}
-
-.btn:hover {
-  background-color: #fa57ba;
-}
-
 /* .icon {
   background-image: url("https://banner2.kisspng.com/20180801/pxl/kisspng-unicorn-emoji-clip-art-sticker-portable-network-gr-emoticon-unicorn-5b61fa7b791fc8.4775243115331477714961.jpg");
 } */
@@ -156,12 +143,27 @@ canvas {
   padding-right: 20px;
 }
 
-.let-me-help{
+.let-me-help {
   position: absolute;
   width: 120px;
   height: 120px;
   display: flex;
   align-items: center;
+  cursor: pointer; 
+}
+
+.startBtn {
+  border-radius: 3px;
+  border: 2px solid #794ADF;
+  box-shadow: #302b3e;
+  cursor: pointer; 
+  background-color: #fa57ba;
+  color: white;
+  font-family: 'Inconsolata', monospace;
+}
+
+.startBtn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .container-help{
@@ -208,7 +210,8 @@ canvas {
 }
 
 .selected {
-  border: 3px solid black;
+  border: 2px solid white;
+  border-radius: 5px;
 }
 
 
