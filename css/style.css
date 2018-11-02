@@ -166,6 +166,24 @@ canvas {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+.restartBtn {
+  position: absolute;
+  display: none;
+  border-radius: 3px;
+  border: 2px solid #794ADF;
+  box-shadow: #302b3e;
+  cursor: pointer; 
+  background-color: #fa57ba;
+  color: white;
+  font-family: 'Inconsolata', monospace;
+  left:1000px;
+  top:500px;
+}
+
+.restartBtn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
 .container-help{
   width: 120px;
   height: 120px;

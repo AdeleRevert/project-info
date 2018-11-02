@@ -88,12 +88,18 @@ var letMeHelpBtn = document.querySelector(".let-me-help");
 var startBtn = document.querySelector(".startBtn");
 // remette écran start en display none 
 
+var restartBtn = document.querySelector(".restartBtn");
+
 letMeHelpBtn.onclick = function() {
-  console.log(display);
   display.style.display = 'flex';
 }
 
 startBtn.onclick = function (){
+  drawingLoop();
+  display.style.display = 'none';
+};
+
+restartBtn.onclick = function (){
   drawingLoop();
   display.style.display = 'none';
 };
@@ -140,7 +146,6 @@ for( var i = 0; i < faces.length; i++ ) {
     hoomansImg.src = this.querySelector("img").src;
     this.classList.add("selected");
     badBoy = this.firstChild.getAttribute("name");
-    console.log(badBoy)
   }
 };
 
@@ -279,7 +284,11 @@ function drawEverything() {
 
   if (unicorn.isCrashed) {
     gameOver.drawMe();
+    restartBtn.style.display = "block";
+    return;
   }
+
+
 }
 
 
