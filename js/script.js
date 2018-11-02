@@ -101,7 +101,7 @@ startBtn.onclick = function (){
 
 restartBtn.onclick = function (){
   drawingLoop();
-  display.style.display = 'none';
+/*   display.style.display = 'none'; */
 };
 
 // create a unicorn object
